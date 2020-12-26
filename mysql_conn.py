@@ -21,7 +21,7 @@ from utils import log_abu_settings, cleanup
 
 LOGS_DIR = "logs"
 # get the path of the module
-FILE_PATH = os.path.dirname(__file__)
+FILE_PATH = os.path.dirname(os.path.abspath(__file__))
 # join the path with the path of logsdir
 LOGS_DIR_PATH = os.path.join(FILE_PATH, LOGS_DIR)
 # In this case it will be /path/to/script_dir/logs
