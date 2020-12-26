@@ -17,7 +17,7 @@ except ImportError:
 import os
 ###################### LOGGING PART #####################
 import logging
-from utils import log_abu_settings
+from utils import log_abu_settings, cleanup
 
 LOGS_DIR = "logs"
 # get the path of the module
@@ -176,3 +176,9 @@ if __name__ == "__main__":
         log.error(f"Problem while operating with DB: {e}")
     finally:
         db_conn.close()
+    
+    # CLEAN UP PROCESS, ADD DIR TO CLEAN FILES AND DIR
+    paths_to_clean = ["logs"]
+    log.info(f"Cleaning process to free space from dirs {paths_to_clean}")
+    for path in paths_to_clean:
+        cleanup(number_of_days=30, path=f"{FILE_PATH}/{path}")
