@@ -1,2 +1,2 @@
-# mysql_conn_template
-A basic template for the mysql connection 
+# connections template
+A basic template for the various connection to start with
