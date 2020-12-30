@@ -70,7 +70,8 @@ class LdapClient:
         except ldap.LDAPError as e:
             message = ERR_TEMPLATE.format(type(e).__name__, e.args)
             log.debug(message)
-            log.error(f"LDAP Connection Failed: {e.args['desc']}")
+            err_m = f"{e.args[0].get('desc')}, More Info: {e.args[0].get('info')}"
+            log.error(f"LDAP Connection Failed: {err_m}")
             sys.exit(1)
 
     def close(self):
@@ -97,8 +98,9 @@ class LdapClient:
         except ldap.LDAPError as e:
             message = ERR_TEMPLATE.format(type(e).__name__, e.args)
             log.debug(message)
-            log.error(f"Problem while modifying record: {e.args[0]['desc']}")
-
+            err_m = f"{e.args[0].get('desc')}, More Info: {e.args[0].get('info')}"
+            log.error(f"Problem while modifying record: {err_m}")
+            
     def search(
         self, basedn, object_to_search, attributes_to_search, escape_wildchar=True
     ):
@@ -123,7 +125,8 @@ class LdapClient:
         except ldap.LDAPError as e:
             message = ERR_TEMPLATE.format(type(e).__name__, e.args)
             log.debug(message)
-            log.error(f"Problem while searching: {e.args[0]['desc']}")
+            err_m = f"{e.args[0].get('desc')}, More Info: {e.args[0].get('info')}"
+            log.error(f"Problem while searching: {err_m}")
             return False
 
     def move_to_newrdn(self, object_to_move, old_branch, new_branch, del_old=False):
@@ -144,7 +147,8 @@ class LdapClient:
         except ldap.LDAPError as e:
             message = ERR_TEMPLATE.format(type(e).__name__, e.args)
             log.debug(message)
-            log.error(f"Failed to move: {e.args[0]['desc']}")
+            err_m = f"{e.args[0].get('desc')}, More Info: {e.args[0].get('info')}"
+            log.error(f"Failed to move: {err_m}")
 
 
 if __name__ == "__main__":
