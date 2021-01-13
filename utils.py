@@ -13,7 +13,7 @@ consoleHandler = logging.StreamHandler()
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
-def log_abu_setting(
+def log_abu_settings(
     logs_dir_path, logfile, console_log_level=logging.INFO, file_log_level=logging.DEBUG
 ):
     """Set log format for file and console"""
