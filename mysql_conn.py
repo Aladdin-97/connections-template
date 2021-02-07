@@ -12,6 +12,7 @@ try:
 except ImportError:
     print("pymysql module is missing! please install it and re-run")
     print("you can install it by running # pip install pymysql")
+    raise
 
 
 import os
@@ -164,8 +165,8 @@ if __name__ == "__main__":
         },
     }
     sql = "SELECT * FROM DB.TABLE"
+    db_conn = MySQL_client(**CONFIG)
     try:
-        db_conn = MySQL_client(**CONFIG)
         first_result = db_conn.query(sql)
         second_result = db_conn.pass_params_example(country_param="Italy")
         print("First query result: ", first_result)
