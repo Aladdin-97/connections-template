@@ -124,6 +124,8 @@ class SFTPConnectionManager:
 
 if __name__ == "__main__":
     ## testing purpose ##
+    # run fake sftp with:
+    # docker run -p 2222:22 -d atmoz/sftp user:passwd:::upload
     sftp_connection = SFTPConnectionManager("localhost", 2222, "user", "passwd")
     sftp_connection.login()
     sftp_connection.copy_file(

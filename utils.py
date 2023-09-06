@@ -204,6 +204,17 @@ def check_ip_and_port(host, port):
 
     return True
 
+def check_rsa_key_path(rsa_key_path):
+    log.info("Checking RSA key path...")
+    p = Path(rsa_key_path)
+
+    if p.exists() and p.is_file():
+        return True
+    else:
+        log.error("RSA key path not found")
+        return False
+
+
     
     
     
