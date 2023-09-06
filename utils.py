@@ -5,6 +5,8 @@ import time
 import tty
 import termios
 import logging
+import ipaddress
+import socket
 from logging.handlers import RotatingFileHandler
 
 
@@ -162,7 +164,46 @@ def getch():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
-    
+
+def check_connection(sftp_host, sftp_port):
+    log.info("Checking sftp host and port connectivity...")
+    try:
+        ipaddress.ip_address(sftp_host)
+    except ValueError:
+        log.debug("Hostname supplied, dns will be check...")
+        if not check_dns_name(sftp_host):
+            return False
+
+    if not check_ip_and_port(sftp_host, sftp_port):
+        return False
+
+    return True
+
+
+def check_dns_name(host):
+    try:
+        ip = socket.gethostbyname(host)
+        log.debug(f"Dns resolved of host: {host} as IP: {ip}")
+        return True
+    except socket.gaierror:
+        log.critical(f"DNS Resolution Failed of host: {host}")
+        return False
+
+
+def check_ip_and_port(host, port):
+    destination = (host, port)
+    create_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = (create_socket.connect_ex(destination),)
+
+    if not result == (0,):
+        log.critical(f"Host or port not reachable: {destination}")
+        create_socket.close()
+        return False
+
+    log.debug(f"Host or port reachable: {destination}")
+
+    return True
+
     
     
     
