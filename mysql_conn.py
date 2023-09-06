@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__author__ = "Aladin-29"
+__author__ = "Aladin-97"
 __license__ = "MIT"
 __version__ = 1.0
 __progname__ = "mysql_conn"

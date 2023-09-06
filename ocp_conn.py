@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+__author__ = "Aladin-97"
+__license__ = "MIT"
+__version__ = 1.0
+__progname__ = "ocp_conn"
+__status__ = "Production"
 """
 An Openshift connection driver which can use service account token mounted on pod or user and password to connect to the Openshift via API.
 """

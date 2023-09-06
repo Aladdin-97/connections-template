@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+__author__ = "Aladin-97"
+__license__ = "MIT"
+__version__ = 1.0
+__progname__ = "sftp_conn"
+__status__ = "Production"
+
 import socket
 import paramiko
 import logging

@@ -1,3 +1,8 @@
+__author__ = "Aladin-97"
+__license__ = "MIT"
+__version__ = 2.0
+__status__ = "Production"
+
 import os
 import sys
 import shutil
